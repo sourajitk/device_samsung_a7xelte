@@ -17,9 +17,9 @@
 # Inherit from universal7580-common
 include device/samsung/universal7580-common/BoardConfigCommon.mk
 
-LOCAL_PATH := device/samsung/a5xelte
+LOCAL_PATH := device/samsung/a7xelte
 
-TARGET_OTA_ASSERT_DEVICE := a5xelte,a5xeltexx,a5xelteub,a5xeltedo
+TARGET_OTA_ASSERT_DEVICE := a7xelte,a7xeltexx,a7xelteub,a7xeltedo
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
