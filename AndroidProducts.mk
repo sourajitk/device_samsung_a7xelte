@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2018 The LineageOS Project
+# Copyright (C) 2018 The statixOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,9 +17,9 @@
 LOCAL_PATH := device/samsung/a7xelte
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_PATH)/lineage_a7xelte.mk
+    $(LOCAL_PATH)/statix_a7xelte.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_a7xelte-user \
-    lineage_a7xelte-userdebug \
-    lineage_a7xelte-eng
+    statix_a7xelte-user \
+    statix_a7xelte-userdebug \
+    statix_a7xelte-eng
