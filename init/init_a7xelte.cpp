@@ -45,55 +45,53 @@ using android::base::ReadFileToString;
 using android::base::Trim;
 
 void property_override(char const prop[], char const value[])
-{	
-	prop_info *pi;
+{
+    prop_info *pi;
 
-	pi = (prop_info*) __system_property_find(prop);
-	if (pi)
-		__system_property_update(pi, value, strlen(value));
-	else
-		__system_property_add(prop, strlen(prop), value, strlen(value));
+    pi = (prop_info*) __system_property_find(prop);
+    if (pi)
+        __system_property_update(pi, value, strlen(value));
+    else
+        __system_property_add(prop, strlen(prop), value, strlen(value));
 }
 
 void property_override_dual(char const system_prop[],
-		char const vendor_prop[], char const value[])
+        char const vendor_prop[], char const value[])
 {
-	property_override(system_prop, value);
-	property_override(vendor_prop, value);
+    property_override(system_prop, value);
+    property_override(vendor_prop, value);
 }
 
 void set_sim_info()
 {
-	const char *simslot_count_path = "/proc/simslot_count";
-	std::string simslot_count;
-	
-	if (ReadFileToString(simslot_count_path, &simslot_count)) {
-		simslot_count = Trim(simslot_count); // strip newline
-		property_override("ro.multisim.simslotcount", simslot_count.c_str());
-		if (simslot_count.compare("2") == 0) {
-			property_override("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
-			property_override("persist.radio.multisim.config", "dsds");
-		}
-	}
-	else {
-		LOG(ERROR) << "Could not open '" << simslot_count_path << "'\n";
-	}
+    const char *simslot_count_path = "/proc/simslot_count";
+    std::string simslot_count;
+    
+    if (ReadFileToString(simslot_count_path, &simslot_count)) {
+        simslot_count = Trim(simslot_count); // strip newline
+        property_override("ro.multisim.simslotcount", simslot_count.c_str());
+        if (simslot_count.compare("2") == 0) {
+            property_override("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
+            property_override("persist.radio.multisim.config", "dsds");
+        }
+    }
+    else {
+        LOG(ERROR) << "Could not open '" << simslot_count_path << "'\n";
+    }
 }
 
 void vendor_load_properties()
 {
-	std::string platform;
-	std::string bootloader = GetProperty("ro.bootloader", "");
-	std::string device;
+    std::string bootloader = GetProperty("ro.bootloader", "");
+    std::string device;
 
-	platform = GetProperty("ro.board.platform", "");
-	if (platform != ANDROID_TARGET)
-		return;
+    if (bootloader.find("A510F") != std::string::npos) {
 
 	if (bootloader.find("A710F") != std::string::npos) {
 
 		/* SM-A710F */
 	property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/a7xeltexx/a7xelte:7.0/NRD90M/A710FXXU2CRE1:user/release-keys");
+	property_override("ro.build.fingerprint", "samsung/a7xeltexx/a7xelte:7.0/NRD90M/A710FXXU2CRE1:user/release-keys");
 	property_override("ro.build.description", "a7xeltexx-user 7.0 NRD90M A710FXXU2CRE1 release-keys");
 	property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-A710F");
 	property_override_dual("ro.product.device", "ro.vendor.product.device", "a7xelte");
@@ -103,6 +101,7 @@ void vendor_load_properties()
 
 		/* SM-A710K */
 	property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/a7xeltektt/a7xelte:7.0/NRD90M/A710KKKU1CQL1:user/release-keys");
+	property_override("ro.build.fingerprint", "samsung/a7xeltektt/a7xelte:7.0/NRD90M/A710KKKU1CQL1:user/release-keys");
 	property_override("ro.build.description", "a7xeltektt-user 7.0 NRD90M A710KKKU1CQL1 release-keys");
 	property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-A710K");
 	property_override_dual("ro.product.device", "ro.vendor.product.device", "a7xelte");
@@ -112,6 +111,7 @@ void vendor_load_properties()
 
 		/* SM-A710L */
 	property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/a7xeltelgt/a7xelte:7.0/NRD90M/A710LKLU1CQL1:user/release-keys");
+	property_override("ro.build.fingerprint", "samsung/a7xeltelgt/a7xelte:7.0/NRD90M/A710LKLU1CQL1:user/release-keys");
 	property_override("ro.build.description", "a7xeltelgt-user 7.0 NRD90M A710LKLU1CQL1 release-keys");
 	property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-A710L");
 	property_override_dual("ro.product.device", "ro.vendor.product.device", "a7xelte");
@@ -121,6 +121,7 @@ void vendor_load_properties()
 
 		/* SM-A710M */
 	property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/a7xelteub/a7xelte:7.0/NRD90M/A710MUBU2CRC3:user/release-keys");
+	property_override("ro.build.fingerprint", "samsung/a7xelteub/a7xelte:7.0/NRD90M/A710MUBU2CRC3:user/release-keys");
 	property_override("ro.build.description", "a7xelteub-user 7.0 NRD90M A710MUBU2CRC3 release-keys");
 	property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-A710M");
 	property_override_dual("ro.product.device", "ro.vendor.product.device", "a7xelte");
@@ -130,6 +131,7 @@ void vendor_load_properties()
 
 		/* SM-A710Y */
 	property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/a7xeltedo/a7xelte:7.0/NRD90M/A710FXXU2CQE3:user/release-keys");
+	property_override("ro.build.fingerprint", "samsung/a7xeltedo/a7xelte:7.0/NRD90M/A710FXXU2CQE3:user/release-keys");
 	property_override("ro.build.description", "a7xeltedo-user 7.0 NRD90M A710FXXU2CQE3 release-keys");
 	property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-A710Y");
 	property_override_dual("ro.product.device", "ro.vendor.product.device", "a7xelte");
@@ -139,6 +141,7 @@ void vendor_load_properties()
 
 		/* SM-A7108 */
 	property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/a7xeltezm/a7xeltecmcc:6.0.1/MMB29K/A7108ZMU3BRG2:user/release-keys");
+	property_override("ro.build.fingerprint", "samsung/a7xeltezm/a7xeltecmcc:6.0.1/MMB29K/A7108ZMU3BRG2:user/release-keys");
 	property_override("ro.build.description", "a7xeltezm-user 6.0.1 MMB29K A7108ZMU3BRG2 release-keys");
 	property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-A7108");
 	property_override_dual("ro.product.device", "ro.vendor.product.device", "a7xeltecmcc");
@@ -148,6 +151,7 @@ void vendor_load_properties()
 
 		/* SM-A710S */
 	property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/a7xelteskt/a7xelte:7.0/NRD90M/A710SKSU1CQL1:user/release-keys");
+	property_override("ro.build.fingerprint", "samsung/a7xelteskt/a7xelte:7.0/NRD90M/A710SKSU1CQL1:user/release-keys");
 	property_override("ro.build.description", "a7xelteskt-user 7.0 NRD90M A710SKSU1CQL1 release-keys");
 	property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-A710S");
 	property_override_dual("ro.product.device", "ro.vendor.product.device", "a7xelte");
