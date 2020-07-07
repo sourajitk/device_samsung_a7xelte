@@ -17,9 +17,9 @@
 # Inherit from universal7580-common
 include device/samsung/universal7580-common/BoardConfigCommon.mk
 
-LOCAL_PATH := device/samsung/a5xelte
+LOCAL_PATH := device/samsung/a7xelte
 
-TARGET_OTA_ASSERT_DEVICE := a5xelte,a5xeltexx,a5xelteub,a5xeltedo
+TARGET_OTA_ASSERT_DEVICE := a7xelte,a7xeltexx,a7xelteub,a7xeltedo
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
@@ -38,7 +38,7 @@ BOARD_PROVIDES_LIBRIL := true
 BOARD_NEEDS_ROAMING_PROTOCOL_FIELD := true
 
 # Init
-TARGET_INIT_VENDOR_LIB := libinit_a5xelte
+TARGET_INIT_VENDOR_LIB := libinit_a7xelte
 
 # Partitions
 BOARD_HAS_NO_MISC_PARTITION:= false
@@ -52,7 +52,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 13514047488
 BOARD_FLASH_BLOCK_SIZE := 4096
 
 # Kernel
-TARGET_KERNEL_CONFIG := lineageos_a5xelte_defconfig
+TARGET_KERNEL_CONFIG := lineageos_a7xelte_defconfig
 
 # Shim
 TARGET_LD_SHIM_LIBS += \
