@@ -147,7 +147,7 @@
 
 	<path name="dev-speaker">
 		<ctl name="HP HP On" value="0" />
-		<ctl name="EP EP On" value="0" />
+		<ctl name="EP EP On" value="1" />
 		<ctl name="SPK SPK On" value="1" />
 	</path>
 
@@ -1592,12 +1592,14 @@
 	<path name="gain-media-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="132" />
-		<ctl name="Speaker Volume" value="0" />
+		<ctl name="Speaker Volume" value="4" />
+		<ctl name="Earphone Volume" value="4" />
 	</path>
 
 	<path name="gain-media-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="122" />
+		<ctl name="Headphone Volume" value="25" />
 	</path>
 
 	<path name="gain-media-speaker-headset">
@@ -1627,7 +1629,8 @@
 	<path name="gain-ringtone-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="Speaker Volume" value="4" />
+		<ctl name="Earphone Volume" value="4" />
 	</path>
 
 	<path name="gain-ringtone-headset">
@@ -3486,6 +3489,7 @@
   </path>
 
   <path name="speaker">
+	<path name="earpiece"/>
     <path name="media-speaker" />
     <path name="gain-media-speaker" />
   </path>
